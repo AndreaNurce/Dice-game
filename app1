@@ -1,0 +1,41 @@
+let player = [0,0];
+let turn = 0;
+let point = 0;
+let newPoint=0 ;
+
+document.querySelector('.btn-roll').addEventListener( 'click', function ()
+{
+  let currentPlayer = document.querySelector('#current-'+turn);
+  let pic = document.querySelector('.dice');
+  let random = Math.floor(Math.random() * 6 )+ 1;
+  pic.src = 'dice-' +random+'.png';
+
+  if (random !== 1) {
+    point = point + random;
+  currentPlayer.textContent = point;
+
+  }else {
+    //change player and score 0
+      currentPlayer.innerHTML = 0;
+    point = 0;
+    nextPlayer();
+
+}});
+
+document.querySelector('.btn-hold').addEventListener( 'click', function (){
+  player[turn] + point;
+  document.querySelector('#score-'+turn).textContent = player[turn];
+
+  nextPlayer();
+});
+
+function nextPlayer() {
+  if (turn === 0) {
+    turn = 1;
+  }else {
+    turn = 0;
+  }
+document.querySelector('.player-0-panel').classList.toggle('active');
+document.querySelector('.player-1-panel').classList.toggle('active');
+
+}
